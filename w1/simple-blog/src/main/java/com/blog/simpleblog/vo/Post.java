@@ -2,12 +2,30 @@ package com.blog.simpleblog.vo;
 
 import java.util.Date;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "post")
 public class Post {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "user")
     private String user;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "content")
     private String content;
+
+    @Column(name = "regDate")
     private Date regDate;
+
+    @Column(name = "updtDate")
     private Date updtDate;
 
     public Post() { 
@@ -18,6 +36,23 @@ public class Post {
         super();
         this.id = id;
         this.user = user;
+        this.title = title;
+        this.content = content;
+        this.regDate = new Date();
+        this.updtDate = new Date();
+    }
+
+    public Post(String user, String title, String content){
+        this.user = user;
+        this.title = title;
+        this.content = content;
+        this.regDate = new Date();
+        this.updtDate = new Date();
+    }
+
+    public Post(Long id, String title, String content) { 
+        super();
+        this.id = id;
         this.title = title;
         this.content = content;
         this.regDate = new Date();
